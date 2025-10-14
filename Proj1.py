@@ -1,3 +1,20 @@
+
+######################################################
+
+#  Student Name: Austin Craft
+
+#  Student ID: W30589890
+
+#  Course Code: CSCI 460 -- Fall 2025
+
+#  Assignment Due Date: 10/14
+
+#  GitHub Link: <enter the link to your GitHub repository>
+
+######################################################
+
+
+
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
@@ -11,21 +28,21 @@ from sklearn.metrics import (
 )
 import matplotlib.pyplot as plt
 
-# -----------------------------
-# 1. Load the dataset
-# -----------------------------
-df = pd.read_csv("bank-full.csv", sep=';')  # Use ';' as separator
+
+# Load the dataset
+
+df = pd.read_csv("bank-full.csv", sep=';') 
 print("Original shape:", df.shape)
 
-# -----------------------------
-# 2. Drop missing values
-# -----------------------------
+
+# Drop missing values
+
 df.dropna(inplace=True)
 print("After dropping NAs:", df.shape)
 
-# -----------------------------
-# 3. Encode categorical variables
-# -----------------------------
+
+# Encode categorical variables
+
 categorical_cols = ['job', 'marital', 'education', 'default',
                     'housing', 'loan', 'contact', 'month',
                     'poutcome', 'y']
@@ -34,20 +51,19 @@ label_encoders = {}
 for col in categorical_cols:
     le = LabelEncoder()
     df[col] = le.fit_transform(df[col])
-    label_encoders[col] = le  # Store for possible inverse transform
+    label_encoders[col] = le  
 
-# -----------------------------
-# 4. Define features and target
-# -----------------------------
-X = df.drop(columns=['y'])  # Features
-y = df['y']                 # Target
+# Define features and target
+
+X = df.drop(columns=['y'])  
+y = df['y']                 
 
 print("Feature shape (X):", X.shape)
 print("Target distribution:\n", y.value_counts())
 
-# -----------------------------
-# 5. Train/test splits & evaluation
-# -----------------------------
+
+# Train/test splits & evaluation
+
 # Generate train/test split ratios from 90/10 to 10/90
 split_ratios = [i / 10 for i in range(9, 0, -1)]
 
